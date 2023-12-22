@@ -1,83 +1,131 @@
+<!-- predictor/templates/predictor/forest_fire.html -->
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Fireo.ml</title>
+  <title>Forest Fire Predictor</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css2/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffcc00;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .nav-wrapper {
+      background-color: #000;
+    }
+
+    h1 {
+      font-size: 5rem;
+      color: #ff0000;
+      text-align: center;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    h5 {
+      font-size: 2rem;
+      text-align: center;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    form {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    label, input {
+      color: #ffcc00;
+      font-size: 1.5rem;
+    }
+
+    input {
+      border: 3px solid #ff0000;
+      padding: 10px;
+      border-radius: 15px;
+      background-color: #333;
+      color: #ffcc00;
+      font-size: 1.2rem;
+    }
+
+    button {
+      background-color: #ff0000;
+      padding: 15px 30px;
+      border: 3px solid #ffcc00;
+      color: #ffcc00;
+      cursor: pointer;
+      border-radius: 15px;
+      font-size: 1.5rem;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+    }
+
+    h4 {
+      margin-top: 20px;
+      font-size: 3rem;
+      color: #ff0000;
+      text-align: center;
+      text-shadow: 2px 2px 5px #000;
+    }
+  </style>
 </head>
 
 <body>
   <nav class="black" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Fireo.ml</a>
-      
-
-      
+    <div class="nav-wrapper container"><a id="logo-container" href="" class="brand-logo">Fireo.ml</a>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
-
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center green-text">**Forest Fire Predictor**</h1>
+      <h1 class="header">Forest Fire Predictor</h1>
       <div class="row center">
-        <h5 class="header col s12 ">This will tell us whether the forest will catch Fire or not..
-        <br>
-        </h5>
+        <h5 class="header col s12">This will tell us whether the forest will catch Fire or not..<br></h5>
       </div>
 
-              <div class="row">
-    <form action='/predict' method="POST" class="col s12">
       <div class="row">
-        <div class="input-field col s4">
-            <label for="first_name"><b>Temperature(*c)</b></label>
-            <br>
-          <input   id="first_name" name='Temperature' placeholder="Temperature" type="text" class="validate">
-        </div>
-        <div class="input-field col s4">
+        <form action='' method="POST" class="col s12">
+          {% csrf_token %}
+          <div class="row">
+            <div class="input-field col s4">
+              <label for="first_name">Temperature(*C)</label><br>
+              <input id="first_name" name='Temperature' placeholder="Temperature" type="text" class="validate">
+            </div>
+            <div class="input-field col s4">
+              <label for="last_name">Oxygen(%)</label><br>
+              <input id="last_name" name="Oxygen" placeholder="Oxygen" type="text" class="validate">
+            </div>
+            <div class="input-field col s4">
+              <label for="_name">Humidity(%)</label><br>
+              <input id="_name" name="Humidity" placeholder="Humidity" type="text" class="validate">
+            </div>
+          </div>
 
-          <label for="last_name"><b>Oxygen </b></label>
-            <br>
-          <input id="last_name"  name="Oxygen" placeholder="Oxygen" type="text" class="validate">
-
-        </div>
-
-        <div class="input-field col s4">
-            <label for="_name"><b>Humidity</b></label>
-            <br>
-          <input id="_name" name="Humidity" placeholder="Humidity" type="text" class="validate">
-
-        </div>
-
+          <div class="row center">
+            <button type="submit">Predict</button>
+          </div>
+        </form>
       </div>
 
-      <div class="row center">
-
-          <button type="submit" class="btn-small waves-effect waves-light black">Predict</button>
-      </div>
-    </form>
-      </div>
-
-      <br><h4 align="center"<b>{{pred}}</b></h4>
-        <br>
-
+      <br><h4>{{pred}}</h4><br>
     </div>
   </div>
 
- 
-  </div>>
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src=".js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-  </body>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+</body>
 </html>
-
