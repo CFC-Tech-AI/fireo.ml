@@ -1,5 +1,5 @@
 Django
 numpy
 scikit-learn
-pickle
+dill
 sklearn
