@@ -2,3 +2,4 @@ Django
 numpy
 scikit-learn
 pickle
+sklearn
