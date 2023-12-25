@@ -2,4 +2,3 @@ Django
 numpy
 scikit-learn
 dill
-sklearn
